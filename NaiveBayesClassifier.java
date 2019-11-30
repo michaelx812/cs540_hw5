@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
+import java.uitl.HashSet;
 
 /**
  * Your implementation of a naive bayes classifier. Please implement all four methods.
