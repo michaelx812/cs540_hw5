@@ -28,6 +28,7 @@ public class NaiveBayesClassifier implements Classifier {
      */
     @Override
     public void train(List<Instance> trainData, int v) {
+        cacheForCond = null;
         //count of vocabulary
         vocab = v;
         // Hint: First, calculate the documents and words counts per label and store them. 
