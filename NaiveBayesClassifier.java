@@ -35,12 +35,12 @@ public class NaiveBayesClassifier implements Classifier {
         dict = new HashSet<String>();
         for(Instance inst: trainData){
             if(inst.label == Label.POSITIVE){
-                for(String s: inst.words()){
+                for(String s: inst.words){
                     dict.add(s);
                     wordsOfPos.put(s,wordsOfPos.getOrDefault(s,0)+1);
                 }
             }else if(inst.label == Label.NEGATIVE){
-                for(String s: inst.words()){
+                for(String s: inst.words){
                     dict.add(s);
                     wordsOfNeg.put(s,wordsOfNeg.getOrDefault(s,0)+1);
                 }
@@ -155,11 +155,11 @@ public class NaiveBayesClassifier implements Classifier {
         double negLog = negativePrior == 0.0 ? (double)Integer.MIN_VALUE:Math.log(negativePrior);
 
         for(String s: words){
-            double posCond = p_w_given_l(s, Lable.POSITIVE);
+            double posCond = p_w_given_l(s, Label.POSITIVE);
             double negCond = p_w_given_l(s, Label.NEGATIVE);
 
-            posLog += posCond == 0 ? (Double)Integer.MIN_VALUE:Math.log(posCond);
-            negLog += negCond == 0 ? (Double)Integer.MIN_VALUE:Math.log(negCond);
+            posLog += posCond == 0 ? (Double)(Integer.MIN_VALUE):Math.log(posCond);
+            negLog += negCond == 0 ? (Double)(Integer.MIN_VALUE):Math.log(negCond);
         }
         ClassifyResult result = new ClassifyResult();
         if(posLog<negLog){
@@ -168,7 +168,7 @@ public class NaiveBayesClassifier implements Classifier {
             result.label = Label.POSITIVE;
         }
 
-        Map<Label, Double> logs = new Map<Label, Double>();
+        Map<Label, Double> logs = new HashMap<Label, Double>();
         logs.put(Label.POSITIVE,posLog);
         logs.put(Label.NEGATIVE,negLog);
 
