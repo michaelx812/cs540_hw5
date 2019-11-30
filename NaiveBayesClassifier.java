@@ -15,6 +15,8 @@ public class NaiveBayesClassifier implements Classifier {
     private Map<String,Integer> wordsOfPos;
     private Map<String,Integer> wordsOfNeg;
 
+    private Map<Label,Double> cacheForCond;
+
     private Set<String> dict;
     
     private double positivePrior;
@@ -136,11 +138,20 @@ public class NaiveBayesClassifier implements Classifier {
         }
         numerator = (double)map.getOrDefault(word, 0) + 1.0;
 
-
-        for(String s: dict){
-            denominator += (double)map.getOrDefault(s, 0);
+        if(cacheForCond!=null && cacheForCond.containsKey(label)){
+            denominator = cacheForCond.get(label);
+        }else{
+            for(String s: dict){
+                denominator += (double)map.getOrDefault(s, 0);
+            }
+            denominator += (double)vocab;
+            if(cacheForCond==null){
+                cacheForCond = new HashMap<Label,Double>();
+            }
+            cache.put(label,denominator);
         }
-        denominator += (double)vocab;
+
+        
 
         return denominator == 0.0 ? 0.0:numerator/denominator;
     }
