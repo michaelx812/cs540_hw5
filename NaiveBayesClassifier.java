@@ -151,15 +151,15 @@ public class NaiveBayesClassifier implements Classifier {
         // TODO : Implement
         // Sum up the log probabilities for each word in the input data, and the probability of the label
         // Set the label to the class with larger log probability
-        double posLog = positivePrior == 0.0 ? (double)Integer.MIN_VALUE:Math.log(positivePrior);
-        double negLog = negativePrior == 0.0 ? (double)Integer.MIN_VALUE:Math.log(negativePrior);
+        double posLog = positivePrior == 0.0 ? 0.0:Math.log(positivePrior);
+        double negLog = negativePrior == 0.0 ? 0.0:Math.log(negativePrior);
 
         for(String s: words){
             double posCond = p_w_given_l(s, Label.POSITIVE);
             double negCond = p_w_given_l(s, Label.NEGATIVE);
 
-            posLog += posCond == 0 ? (Double)(Integer.MIN_VALUE):Math.log(posCond);
-            negLog += negCond == 0 ? (Double)(Integer.MIN_VALUE):Math.log(negCond);
+            posLog += posCond == 0 ? 0.0:Math.log(posCond);
+            negLog += negCond == 0 ? 0.0:Math.log(negCond);
         }
         ClassifyResult result = new ClassifyResult();
         if(posLog<negLog){
