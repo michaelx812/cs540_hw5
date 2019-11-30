@@ -2,7 +2,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import Label;
 
 /**
  * Your implementation of a naive bayes classifier. Please implement all four methods.
@@ -129,7 +128,7 @@ public class NaiveBayesClassifier implements Classifier {
         Map<String,Integer> map;
         if(label == Label.POSITIVE){
             map = wordsOfPos;
-        }else if(label == Label.NEGATIVE){
+        }else{
             map = wordsOfNeg;
         }
         numerator = (double)map.getOrDefault(word, 0) + 1.0;
