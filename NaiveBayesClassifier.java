@@ -33,6 +33,8 @@ public class NaiveBayesClassifier implements Classifier {
         wordPerLabel = getWordsCountPerLabel(trainData);
         // Then, for all the words in the documents of each label, count the number of occurrences of each word.
         dict = new HashSet<String>();
+        wordsOfPos = new HashMap<String,Integer>();
+        wordsOfNeg = new HashMap<String,Integer>();
         for(Instance inst: trainData){
             if(inst.label == Label.POSITIVE){
                 for(String s: inst.words){
