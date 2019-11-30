@@ -29,7 +29,7 @@ public class CrossValidation {
                     dict.add(s);
                 }
             }
-            clf.train(trainSet, dict.size());
+            clf.train(trainSet, v);
 
             int numOfCorrect = 0;
             for(Instance inst: testSet){
