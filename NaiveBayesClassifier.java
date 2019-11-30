@@ -98,9 +98,9 @@ public class NaiveBayesClassifier implements Classifier {
         Map<Label,Integer> map = new HashMap<>();
         for(Instance inst: trainData){
             if(inst.label==Label.POSITIVE){
-                map.put(Label.POSITIVE,map.getOrDefault(1, 0)+1);
+                map.put(Label.POSITIVE,map.getOrDefault(Label.POSITIVE, 0)+1);
             }else if(inst.label==Label.NEGATIVE){
-                map.put(Label.NEGATIVE,map.getOrDefault(1, 0)+1);
+                map.put(Label.NEGATIVE,map.getOrDefault(Label.NEGATIVE, 0)+1);
             }
         }
         return map;
