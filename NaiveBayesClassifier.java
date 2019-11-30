@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import jdk.jfr.Label;
+import Label;
 
 /**
  * Your implementation of a naive bayes classifier. Please implement all four methods.
