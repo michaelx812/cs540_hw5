@@ -148,7 +148,7 @@ public class NaiveBayesClassifier implements Classifier {
             if(cacheForCond==null){
                 cacheForCond = new HashMap<Label,Double>();
             }
-            cache.put(label,denominator);
+            cacheForCond.put(label,denominator);
         }
 
         
